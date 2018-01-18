@@ -1,0 +1,68 @@
+<resources>
+    <string name="app_name">iKuba</string>
+    <string name="title_activity_maps">Map with Marker</string>
+    <string name="hello1">Hello There!</string>
+    <string name="hello2">Before using our app,\ncan you login first?\n\nIf you haven\'t register yet,\n just simply click \nthe register button. </string>
+    <string name="hello3">Welcome Back! </string>
+    <string name="hello4">Join us! </string>
+    <string name="hello5">You\'re almost done !</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="code">c o d e</string>
+    <string name="callme">CALL ME</string>
+    <string name="next">NEXT</string>
+    <string name="finish">FINISH</string>
+    <string name="or">OR</string>
+    <string name="forgot">Help, i forgot my password</string>
+    <string name="have">I already have an account</string>
+    <string name="verification">Please verify that is your number\nWe will send an sms for you\nInsert the code here</string>
+    <string name="access">Can\'t access sms?\nPress CALL ME</string>
+    <string name="home">Home</string>
+    <string name="create">Create an Event</string>
+    <string name="join">Join an Event</string>
+    <string name="show">Show Event List</string>
+    <string name="profile">Profile</string>
+    <string name="logout">Logout</string>
+    <string name="j_text">Join an event</string>
+    <string name="l_text">Show created and joined event</string>
+    <string name="c_text">Configure your profile</string>
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_number">Phone Number</string>
+    <string name="title_activity_login2">Sign in</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_username">This username is too short (min. 6 character)</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short (min. 6 character)</string>
+    <string name="error_invalid_phone_number">This phone number is too short</string>
+    <string name="error_invalid_code">This code is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Create Event -->
+    <string name="create_name">Create Event</string>
+    <string name="a_text">Create a new event</string>
+    <string name="eventName">Event Name</string>
+    <string name="eventQuota">Quota (leave it blank to make it unlimited)</string>
+    <string name="limited">Limited</string>
+    <string name="unlimited">Unlimited</string>
+    <string name="eventPassword">Password (leave it blank to make it no password)</string>
+    <string name="eventDate">Date</string>
+    <string name="eventDescription">Event Description</string>
+
+    <!-- Join Event -->
+    <string name="join_name">Join Event</string>
+    <string name="joinQR">Join with QR</string>
+    <string name="orType">Or just type the\nevent code here</string>
+    <string name="eventID">Event ID</string>
+    <string name="joinOnly">Join</string>
+</resources>
