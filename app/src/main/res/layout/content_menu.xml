@@ -85,4 +85,17 @@
             android:layout_marginRight="7dp"
             android:layout_marginBottom="32dp"/>
 
+        <Button
+            android:id="@+id/btn_coba"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle2"
+            android:fontFamily="@font/walter_turncoat"
+            android:text="NYOBAK BOS"
+            android:textColor="#6C7A89"
+            android:textStyle="bold"
+            android:layout_marginLeft="7dp"
+            android:layout_marginRight="7dp"
+            android:layout_marginBottom="32dp"/>
+
 </LinearLayout>

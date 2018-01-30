@@ -19,7 +19,7 @@ public class JoinActivity extends AppCompatActivity {
         btn_joinQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(JoinActivity.this,JoinQRActivity.class));
+                startActivity(new Intent(JoinActivity.this,ScanQRActivity.class));
             }
         });
 

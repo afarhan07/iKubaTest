@@ -20,6 +20,7 @@ public class MenuActivity extends AppCompatActivity {
 
         Button btnGLogin = findViewById(R.id.btn_go_login);
         Button btnGRegister = findViewById(R.id.btn_go_register);
+        Button btnNyobak = findViewById(R.id.btn_coba);
 
         btnGLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +33,13 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MenuActivity.this,RegisterActivity.class));
+            }
+        });
+
+        btnNyobak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MenuActivity.this,MainActivity.class));
             }
         });
     }

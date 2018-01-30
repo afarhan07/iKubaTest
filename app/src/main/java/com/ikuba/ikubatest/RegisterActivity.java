@@ -11,13 +11,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ikuba.ikubatest.Model.MUser;
+import com.ikuba.ikubatest.Parent.BaseActivity;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RegisterActivity extends AppCompatActivity {
+import id.flwi.util.ActivityUtil;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
-    private EditText mUsername,mPassword,mEmail,mPhoneNumber;
+public class RegisterActivity extends BaseActivity {
+
+    private EditText mUsername,mName,mPassword,mEmail,mPhoneNumber;
     private Button mNext;
 
     @Override
@@ -25,6 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         mUsername = findViewById(R.id.username);
+        mName = findViewById(R.id.name);
         mPassword = findViewById(R.id.password);
         mEmail = findViewById(R.id.email);
         mPhoneNumber = findViewById(R.id.phoneNumber);
@@ -67,10 +77,12 @@ public class RegisterActivity extends AppCompatActivity {
         String sPassword = mPassword.getText().toString();
         String sEmail = mEmail.getText().toString();
         String sPhoneNumber = mPhoneNumber.getText().toString();
+        String sName = mName.getText().toString();
 
         boolean success;
 
         mUsername.setError(null);
+        mName.setError(null);
         mPassword.setError(null);
         mEmail.setError(null);
         mPhoneNumber.setError(null);
@@ -82,6 +94,14 @@ public class RegisterActivity extends AppCompatActivity {
         } else if(!isUsernameValid(sUsername)){
             mUsername.setError(getString(R.string.error_invalid_username));
             mUsername.requestFocus();
+            success = false;
+        } else if (TextUtils.isEmpty(sName)) {
+            mName.setError(getString(R.string.error_field_required));
+            mName.requestFocus();
+            success = false;
+        } else if(!isNameValid(sName)){
+            mName.setError(getString(R.string.error_invalid_name));
+            mName.requestFocus();
             success = false;
         } else if (TextUtils.isEmpty(sEmail)) {
             mEmail.setError(getString(R.string.error_field_required));
@@ -112,13 +132,46 @@ public class RegisterActivity extends AppCompatActivity {
         }
 
         if(success){
-            startActivity(new Intent(RegisterActivity.this,RegisterVerificationActivity.class));
+            Call<MUser> postUserCall = apiService.register(mUsername.getText().toString(),
+                    mName.getText().toString(),
+                    mPassword.getText().toString(),
+                    mEmail.getText().toString(),
+                    mPhoneNumber.getText().toString());
+            postUserCall.enqueue(new Callback<MUser>() {
+                @Override
+                public void onResponse(Call<MUser> call, Response<MUser> response) {
+                    progressDialog.dismiss();
+                    if(response.isSuccessful()) {
+                        if (response.body().isStatus()) {
+                            if (response.body().getData() != null) {
+                                setDataUser(response.body().getData());
+                                startActivity(new Intent(RegisterActivity.this, RegisterVerificationActivity.class));
+                                finish();
+                            }
+                        } else {
+                            Toast.makeText(RegisterActivity.this, String.valueOf(response.body().getMessage()), Toast.LENGTH_LONG).show();
+                        }
+                    }else{
+                        Toast.makeText(RegisterActivity.this, getString(R.string.error_server), Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<MUser> call, Throwable t) {
+                    progressDialog.dismiss();
+                    messsageErrorServer(t);
+                }
+            });
         }
     }
 
     private boolean isUsernameValid(String sUsername){
 
         return mUsername.length() > 5;
+    }
+    private boolean isNameValid(String sName){
+
+        return mName.length() > 1;
     }
     private boolean isEmailValid(String sEmail){
         Pattern pattern;
@@ -139,4 +192,14 @@ public class RegisterActivity extends AppCompatActivity {
         return mPhoneNumber.length() > 10;
     }
 
+    public void setDataUser(MUser.User user) {
+        if (user != null) {
+            if (user.getId() != null)
+                ActivityUtil.setSharedPreference(this, USER_ID, user.getId());
+            if (user.getUsername() != null)
+                ActivityUtil.setSharedPreference(this, USER_NAME, user.getUsername());
+            if (user.getUser_token() != null)
+                ActivityUtil.setSharedPreference(this, USER_TOKEN, user.getUser_token());
+        }
+    }
 }

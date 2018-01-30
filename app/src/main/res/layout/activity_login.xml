@@ -36,15 +36,15 @@
                 android:textStyle="bold" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="7dp"
                 android:background="@drawable/edit_text"
                 android:drawablePadding="10dp"
-                android:drawableStart="@drawable/ic_email"
-                android:hint="@string/prompt_email"
-                android:inputType="textEmailAddress"
+                android:drawableStart="@drawable/ic_user"
+                android:hint="@string/prompt_username"
+                android:inputType="text"
                 android:maxLines="1"
                 android:padding="16dp"
                 android:singleLine="true" />
